@@ -1,0 +1,432 @@
+/* --- БАЗОВЫЕ НАСТРОЙКИ --- */
+body {
+    background: radial-gradient(circle at center, #1a1f24 0%, #0a0c0e 100%);
+    color: #e2e8f0;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- ШАПКА И ПОДВАЛ --- */
+.site-header {
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(185, 28, 28, 0.5);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.logo span { color: #dc2626; }
+
+.admin-link {
+    color: #94a3b8;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1rem;
+    transition: color 0.3s;
+}
+
+.admin-link:hover { color: #ef4444; }
+
+.site-footer {
+    background: black;
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: auto;
+}
+
+/* --- ГЛАВНЫЙ КОНТЕНТ (GRID & FLEX) --- */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.container-center {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- ГЛАВНАЯ СТРАНИЦА: РАНДОМАЙЗЕР --- */
+.btn-random {
+    background-color: #b91c1c;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(185, 28, 28, 0.4);
+    margin-bottom: 3rem;
+}
+
+.btn-random:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
+.hero-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-card-main {
+    width: 256px;
+    height: 320px;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 2px solid rgba(239, 68, 68, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero-card-main:hover {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+    border-color: #f87171;
+}
+
+.hero-name-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    padding: 12px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.item-slot {
+    width: 96px;
+    height: 80px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.item-slot:hover { border-color: #3b82f6; }
+
+.item-slot img, .hero-card-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- СТРАНИЦА ДЕТАЛЕЙ --- */
+.details-wrapper {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.details-card {
+    display: flex;
+    background: #1c242d;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.details-image-box {
+    width: 50%;
+    height: 450px;
+    background: black;
+}
+
+.details-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.details-info-box {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-text {
+    background: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 3px solid #dc2626;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.back-btn {
+    color: #dc2626;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+/* Адаптивность для мобилок */
+@media (max-width: 768px) {
+    .items-grid { grid-template-columns: repeat(3, 1fr); }
+    .details-card { flex-direction: column; }
+    .details-image-box, .details-info-box { width: 100%; }
+}
+.placeholder-icon {
+    font-size: 4rem;
+    color: #475569;
+    font-weight: bold;
+}
+
+.placeholder-item {
+    color: #475569;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* --- СТИЛИ ДЛЯ АДМИН-ПАНЕЛИ --- */
+
+.admin-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.admin-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #dc2626;
+    text-transform: uppercase;
+    border-left: 5px solid #dc2626;
+    padding-left: 20px;
+    margin-bottom: 40px;
+}
+
+/* Секция (блок героя или предмета) */
+.admin-section {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 50px; /* Тот самый отступ между блоками */
+    position: relative;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Разделитель между секциями */
+.admin-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #334155, transparent);
+    margin: 40px 0;
+    border: none;
+}
+
+/* Стили для полей ввода в админке */
+.admin-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.admin-input-group label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.admin-input {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.admin-input:focus {
+    border-color: #dc2626;
+    outline: none;
+}
+
+.btn-add {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    align-self: flex-end;
+}
+
+.btn-add:hover { background: #15803d; }
+
+.btn-delete {
+    color: #ef4444;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+.btn-delete:hover { text-decoration: underline; }
+/* Обновленный дизайн входа в стиле Dota 2 */
+.login-container {
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 40px;
+    background: linear-gradient(145deg, #16191b, #0d0f11);
+    border-top: 2px solid rgba(185, 28, 28, 0.5); /* Тонкая полоска сверху как акцент */
+    border-radius: 4px; /* В Доте чаще прямые углы */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Эффект свечения на фоне */
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(245, 125, 49, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.login-title {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #8a8e94;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #3d444b;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Чтобы padding не раздувал input */
+}
+
+.login-input:focus {
+    border-color: rgba(185, 28, 28, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    outline: none;
+    box-shadow: 0 0 10px rgba(245, 125, 49, 0.2);
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: rgba(185, 28, 28, 0.609);
+    border: none;
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(245, 125, 49, 0.4);
+    filter: brightness(1.1);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ff8080;
+    padding: 12px;
+    border-left: 4px solid #ef4444;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
