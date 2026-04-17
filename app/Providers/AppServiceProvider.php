@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; // <-- ОБЯЗАТЕЛЬНО ДОБАВЬ ЭТУ СТРОКУ
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Если сайт запущен в облаке (production), принудительно используем HTTPS
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
