@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // <-- ОБЯЗАТЕЛЬНО ДОБАВЬ ЭТУ СТРОКУ
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Artisan; // Добавь эту строку
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,9 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Если сайт запущен в облаке (production), принудительно используем HTTPS
         if (app()->environment('production')) {
             URL::forceScheme('https');
+            
+            // Очищаем конфиг, чтобы Laravel подтянул новые переменные из Railway
+            Artisan::call('config:clear');
         }
     }
 }
