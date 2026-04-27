@@ -15,8 +15,28 @@
         @yield('content')
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 Dota 2 Hero Picker</p>
-    </footer>
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <a href="{{ route('home') }}" class="logo">DOTA<span>PICKER</span></a>
+            <p>&copy; 2026 Dota 2 Hero Picker</p>
+        </div>
+
+        <div class="footer-contacts">
+            <span class="footer-label">Связь с нами</span>
+            <div class="footer-nav">
+                <a href="https://t.me/твой_канал" target="_blank" class="footer-link">
+                    <span class="footer-icon">📢</span> ТГ-канал
+                </a>
+                <a href="https://t.me/твой_логин" target="_blank" class="footer-link">
+                    <span class="footer-icon">✉️</span> Поддержка / Идеи
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
 </body>
 </html>
