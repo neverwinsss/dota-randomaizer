@@ -40,12 +40,16 @@
                 <tr>
                     <td><img src="{{ asset('images/' . $hero->photo) }}" style="width: 50px; height: 30px; object-fit: cover; border-radius: 3px;"></td>
                     <td>{{ $hero->name }}</td>
-                    <td>{{ $hero->info }}</td>
+                    <td class="admin-description">{{ $hero->info }}</td>
                     <td style="text-align: right;">
-                        <form action="{{ route('admin.hero.delete', $hero->id) }}" method="POST">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn-delete">Удалить</button>
-                        </form>
+                        <div style="display: flex; gap: 8px; justify-content: flex-end;">
+                            <a href="{{ route('admin.hero.edit', $hero->id) }}" class="btn-edit" style="background: #eab308; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px;">Редакт.</a>
+                            
+                            <form action="{{ route('admin.hero.delete', $hero->id) }}" method="POST" onsubmit="return confirm('Удалить героя?')">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn-delete">Удалить</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -91,12 +95,16 @@
                 <tr>
                     <td><img src="{{ asset('images/' . $item->photo) }}" style="width: 40px; height: 30px; object-fit: cover; border-radius: 3px;"></td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->info }}</td>
+                    <td class="admin-description">{{ $item->info }}</td>
                     <td style="text-align: right;">
-                        <form action="{{ route('admin.item.delete', $item->id) }}" method="POST">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn-delete">Удалить</button>
-                        </form>
+                        <div style="display: flex; gap: 8px; justify-content: flex-end;">
+                            <a href="{{ route('admin.item.edit', $item->id) }}" class="btn-edit" style="background: #eab308; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px;">Редакт.</a>
+                            
+                            <form action="{{ route('admin.item.delete', $item->id) }}" method="POST" onsubmit="return confirm('Удалить предмет?')">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn-delete">Удалить</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

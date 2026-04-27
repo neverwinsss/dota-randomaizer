@@ -13,13 +13,12 @@ class AdminController extends Controller
      * Отображение главной страницы админки со списками всех героев и предметов.
      */
     public function index()
-{
-    // Сортируем по ID, так как он точно есть в БД
-    $heroes = Hero::orderBy('id', 'desc')->get();
-    $items = Item::orderBy('id', 'desc')->get();
-    
-    return view('admin.index', compact('heroes', 'items'));
-}
+    {
+        $heroes = Hero::orderBy('id', 'desc')->get();
+        $items = Item::orderBy('id', 'desc')->get();
+        
+        return view('admin.index', compact('heroes', 'items'));
+    }
 
     /**
      * Сохранение нового героя.
@@ -35,7 +34,6 @@ class AdminController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = time() . '_' . $file->getClientOriginalName();
-            // Сохраняем физически в public/images/heroes
             $file->move(public_path('images/heroes'), $filename);
             $path = 'heroes/' . $filename;
         }
@@ -50,13 +48,53 @@ class AdminController extends Controller
     }
 
     /**
+     * Форма редактирования героя.
+     */
+    public function editHero($id)
+    {
+        $hero = Hero::findOrFail($id);
+        return view('admin.edit_hero', compact('hero'));
+    }
+
+    /**
+     * Обновление данных героя.
+     */
+    public function updateHero(Request $request, $id)
+    {
+        $hero = Hero::findOrFail($id);
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'info' => 'nullable|string',
+        ]);
+
+        $hero->name = $request->name;
+        $hero->info = $request->info;
+
+        if ($request->hasFile('photo')) {
+            // Удаляем старое фото, если оно существует
+            if (File::exists(public_path('images/' . $hero->photo))) {
+                File::delete(public_path('images/' . $hero->photo));
+            }
+            
+            $file = $request->file('photo');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/heroes'), $filename);
+            $hero->photo = 'heroes/' . $filename;
+        }
+
+        $hero->save();
+        return redirect()->route('admin.index')->with('success', 'Герой обновлен!');
+    }
+
+    /**
      * Удаление героя.
      */
     public function deleteHero($id)
     {
         $hero = Hero::findOrFail($id);
         
-        // Удаляем файл картинки, если он существует, чтобы не засорять память
         $imagePath = public_path('images/' . $hero->photo);
         if (File::exists($imagePath)) {
             File::delete($imagePath);
@@ -80,7 +118,6 @@ class AdminController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = time() . '_' . $file->getClientOriginalName();
-            // Сохраняем физически в public/images/items
             $file->move(public_path('images/items'), $filename);
             $path = 'items/' . $filename;
         }
@@ -95,13 +132,53 @@ class AdminController extends Controller
     }
 
     /**
+     * Форма редактирования предмета.
+     */
+    public function editItem($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('admin.edit_item', compact('item'));
+    }
+
+    /**
+     * Обновление данных предмета.
+     */
+    public function updateItem(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'info' => 'nullable|string',
+        ]);
+
+        $item->name = $request->name;
+        $item->info = $request->info;
+
+        if ($request->hasFile('photo')) {
+            // Удаляем старое фото
+            if (File::exists(public_path('images/' . $item->photo))) {
+                File::delete(public_path('images/' . $item->photo));
+            }
+
+            $file = $request->file('photo');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/items'), $filename);
+            $item->photo = 'items/' . $filename;
+        }
+
+        $item->save();
+        return redirect()->route('admin.index')->with('success', 'Предмет обновлен!');
+    }
+
+    /**
      * Удаление предмета.
      */
     public function deleteItem($id)
     {
         $item = Item::findOrFail($id);
 
-        // Удаляем файл картинки
         $imagePath = public_path('images/' . $item->photo);
         if (File::exists($imagePath)) {
             File::delete($imagePath);
