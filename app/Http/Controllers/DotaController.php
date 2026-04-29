@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hero;
 use App\Models\Item;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; // Это должно быть здесь
 
 class DotaController extends Controller
 {
@@ -15,11 +15,20 @@ class DotaController extends Controller
         ]);
     }
 
-    public function randomize() {
-        // Получаем одного случайного героя
-        $hero = Hero::inRandomOrder()->first();
+    // Добавляем Request сюда, чтобы работать с сессиями
+    public function randomize(Request $request) {
+        // 1. Берем ID героя, который выпал в прошлый раз (из сессии)
+        $lastHeroId = session('last_hero_id');
+
+        // 2. Получаем случайного героя, исключая предыдущего
+        $hero = Hero::where('id', '!=', $lastHeroId)
+                    ->inRandomOrder()
+                    ->first();
         
-        // Берем 6 случайных уникальных предметов
+        // 3. Запоминаем ID текущего героя для следующего клика
+        session(['last_hero_id' => $hero->id]);
+        
+        // 4. Берем 6 случайных уникальных предметов (база сама исключит повторы)
         $items = Item::inRandomOrder()->limit(6)->get();
 
         return view('welcome', compact('hero', 'items'));
