@@ -15,7 +15,7 @@ class DotaController extends Controller
         ]);
     }
 
-    // Добавляем Request сюда, чтобы работать с сессиями
+    
     public function randomize(Request $request) {
         // 1. Берем ID героя, который выпал в прошлый раз (из сессии)
         $lastHeroId = session('last_hero_id');

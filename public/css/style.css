@@ -229,7 +229,22 @@ body {
     height: 100%;
     object-fit: cover;
 }
+/* --- АДАПТИВ --- */
 
+/* Планшеты (до 1024px или 768px, обычно 2 предмета в ряд) */
+@media (max-width: 1024px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Мобильные устройства (до 480px, 1 предмет в ряд) */
+@media (max-width: 480px) {
+    .items-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px; /* Можно немного уменьшить отступ для мобилок */
+    }
+}
 /* --- СТРАНИЦА ДЕТАЛЕЙ --- */
 .details-wrapper {
     max-width: 900px;
