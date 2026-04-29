@@ -25,10 +25,10 @@
         <div class="footer-contacts">
             <span class="footer-label">Связь с нами</span>
             <div class="footer-nav">
-                <a href="https://t.me/твой_канал" target="_blank" class="footer-link">
+                <a href="https://t.me/+yvmhamP5ANEyNmE6" target="_blank" class="footer-link">
                     <span class="footer-icon">📢</span> ТГ-канал
                 </a>
-                <a href="https://t.me/твой_логин" target="_blank" class="footer-link">
+                <a href="https://t.me/dota-supporter" target="_blank" class="footer-link">
                     <span class="footer-icon">✉️</span> Поддержка / Идеи
                 </a>
             </div>
