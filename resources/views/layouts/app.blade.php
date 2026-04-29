@@ -28,7 +28,7 @@
                 <a href="https://t.me/+yvmhamP5ANEyNmE6" target="_blank" class="footer-link">
                     <span class="footer-icon">📢</span> ТГ-канал
                 </a>
-                <a href="https://t.me/dota-supporter" target="_blank" class="footer-link">
+                <a href="https://t.me/dota_supporter" target="_blank" class="footer-link">
                     <span class="footer-icon">✉️</span> Поддержка / Идеи
                 </a>
             </div>
