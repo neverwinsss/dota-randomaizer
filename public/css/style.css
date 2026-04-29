@@ -508,3 +508,132 @@ body {
     font-size: 14px;
     text-align: center;
 }
+
+/* --- АДАПТИВНЫЕ СТИЛИ (MEDIA QUERIES) --- */
+
+/* Планшеты и малые экраны (до 1024px) */
+@media (max-width: 1024px) {
+    .items-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 колонки вместо 6 */
+        gap: 10px;
+    }
+
+    .admin-wrapper {
+        padding: 15px;
+    }
+}
+
+/* Мобильные устройства (до 768px) */
+@media (max-width: 768px) {
+    /* Шапка */
+    .site-header {
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    /* Главный контент */
+    .main-content {
+        padding: 1.5rem 1rem;
+    }
+
+    .btn-random {
+        width: 100%;
+        max-width: 300px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Сетка предметов */
+    .items-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    }
+
+    .item-slot {
+        width: 100%; /* Занимает всю ширину ячейки */
+        height: 70px;
+    }
+
+    /* Карточка деталей */
+    .details-card {
+        flex-direction: column;
+        border-radius: 12px;
+    }
+
+    .details-image-box {
+        width: 100%;
+        height: 300px;
+    }
+
+    .details-info-box {
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Админка */
+    .admin-section {
+        padding: 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Футер */
+    .footer-container {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer-label {
+        text-align: center;
+    }
+}
+
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr); /* Всего 2 колонки предметов */
+    }
+
+    .hero-card-main {
+        width: 200px;
+        height: 250px;
+    }
+
+    .admin-title {
+        font-size: 1.5rem;
+    }
+
+    .login-container {
+        margin: 40px 15px;
+        padding: 25px;
+    }
+
+    .login-title {
+        font-size: 20px;
+    }
+}
+
+/* Фикс для очень длинных названий в админке */
+.admin-input-group {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
